@@ -41,17 +41,23 @@ Quantize/
 ## Setup
 
 ### 1. Clone Repository
+```bash
 git clone <repo-url>
+```
 
 ### 2. Install Client
-cd Client
+```bash
+cd client
 npm install
 npm run dev
+```
 
 ### 3. Install Server
-cd Server
+```bash
+cd server
 npm install
 node index.js
+```
 
 ## Educational Objective
 
