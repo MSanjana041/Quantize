@@ -42,7 +42,7 @@ Quantize/
 
 ### 1. Clone Repository
 ```bash
-git clone <repo-url>
+git clone https://github.com/MSanjana041/Quantize.git
 ```
 
 ### 2. Install Client
