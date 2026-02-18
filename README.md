@@ -1,4 +1,5 @@
 # Quantize
+<img width="1302" height="383" alt="image" src="https://github.com/user-attachments/assets/c2f39fc7-4aa5-45fd-91c0-54af7f85d249" />
 
  Quantize is a full-stack arithmetic reasoning engine designed to promote structured mathematical thinking.
 
@@ -10,6 +11,7 @@
 - Difficulty scaling system
 - Constraint validation engine
 - Autism-friendly structured design
+<img width="600" height="834" alt="image" src="https://github.com/user-attachments/assets/a488a6c5-7b16-41c4-974e-54625ce06eac" />
 
 ## Tech Stack
 
