@@ -47,14 +47,14 @@ git clone https://github.com/MSanjana041/Quantize.git
 
 ### 2. Install Client
 ```bash
-cd client
+cd Client
 npm install
 npm run dev
 ```
 
 ### 3. Install Server
 ```bash
-cd server
+cd Server
 npm install
 node index.js
 ```
