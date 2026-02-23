@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DndContext, DragOverlay, pointerWithin } from "@dnd-kit/core";
+import html2canvas from "html2canvas";
 import MainPage from "./components/MainPage";
 import TargetDisplay from "./components/TargetDisplay";
 import NumberPad from "./components/NumberPad";
@@ -15,6 +16,8 @@ function App() {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const [activeDrag, setActiveDrag] = useState(null); // { type, value }
+  const [isSolved, setIsSolved] = useState(false);
+  const gameRef = useRef(null);
 
   /* ---------------- FETCH PUZZLE ---------------- */
 
@@ -28,6 +31,7 @@ function App() {
       setExpression([]);
       setMessage("");
       setMessageType("");
+      setIsSolved(false);
     } catch (error) {
       setMessage("Could not load puzzle.");
       setMessageType("error");
@@ -135,9 +139,9 @@ function App() {
       const data = await response.json();
 
       if (data.valid) {
-        setMessage("🎉 Correct! Loading next puzzle...");
+        setMessage("🎉 Correct! You can now share your achievement.");
         setMessageType("success");
-        setTimeout(() => fetchPuzzle(), 1500);
+        setIsSolved(true);
       } else {
         setMessage(data.message);
         setMessageType("error");
@@ -146,6 +150,25 @@ function App() {
       }
     } catch (error) {
       setMessage("Server error. Is backend running?"); setMessageType("error");
+    }
+  };
+
+  /* ---------------- CAPTURE ---------------- */
+
+  const handleCapture = async () => {
+    if (!gameRef.current) return;
+    try {
+      const canvas = await html2canvas(gameRef.current, {
+        backgroundColor: "#0d0f1a", // Matches .game-page background
+        scale: 2, // Higher quality
+      });
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = `quantize-achievement-${target}.png`;
+      link.click();
+    } catch (err) {
+      console.error("Capture failed", err);
     }
   };
 
@@ -192,7 +215,7 @@ function App() {
           <div style={{ width: "80px" }} />
         </nav>
 
-        <div className="game-container">
+        <div className="game-container" ref={gameRef}>
           <h1 className="game-title">Quantize</h1>
 
           {target !== null && <TargetDisplay target={target} />}
@@ -204,11 +227,25 @@ function App() {
           <OperatorPad onSelect={handleAddOperator} />
 
           <div className="game-actions">
-            <button className="game-btn game-btn--clear" onClick={handleClear}>
+            <button className="game-btn game-btn--clear" onClick={handleClear} disabled={isSolved}>
               Clear
             </button>
-            <button className="game-btn game-btn--submit" onClick={handleSubmit}>
+            <button className="game-btn game-btn--submit" onClick={handleSubmit} disabled={isSolved}>
               Submit
+            </button>
+          </div>
+
+          {isSolved && (
+            <div className="game-actions">
+              <button className="game-btn game-btn--next" onClick={fetchPuzzle}>
+                Next Puzzle →
+              </button>
+            </div>
+          )}
+
+          <div className="game-actions">
+            <button className="game-btn game-btn--share" onClick={handleCapture}>
+              📸 Share Achievement
             </button>
           </div>
 

@@ -250,6 +250,30 @@
     transform: translateY(-1px);
 }
 
+.game-btn--share {
+    background: rgba(167, 139, 250, 0.1);
+    border: 1.5px solid rgba(167, 139, 250, 0.4);
+    color: #a78bfa;
+    margin-top: 0.5rem;
+}
+
+.game-btn--share:hover {
+    background: rgba(167, 139, 250, 0.2);
+    border-color: #a78bfa;
+    transform: translateY(-1px);
+}
+
+.game-btn--next {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.game-btn--next:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
 /* ── MESSAGE ── */
 .game-message {
     margin-top: 1.25rem;
