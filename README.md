@@ -1,6 +1,8 @@
 # Quantize
 <img width="1302" height="383" alt="image" src="https://github.com/user-attachments/assets/c2f39fc7-4aa5-45fd-91c0-54af7f85d249" />
 
+## 🚀 [▶ Play Live on Vercel →](https://quantize-olive.vercel.app/)
+
  Quantize is a full-stack arithmetic reasoning engine designed to promote structured mathematical thinking.
 
 ## Features
