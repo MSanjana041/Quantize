@@ -23,7 +23,7 @@ function App() {
 
   const fetchPuzzle = async () => {
     try {
-      const response = await fetch("http://localhost:5000/puzzle");
+      const response = await fetch("https://quantize-2pq1.onrender.com/puzzle");
       const data = await response.json();
       setTarget(data.target);
       const formattedNumbers = data.numbers.map(num => ({ value: num, used: false }));
@@ -131,7 +131,7 @@ function App() {
     const ops = expression.filter((_, i) => i % 2 === 1);
 
     try {
-      const response = await fetch("http://localhost:5000/evaluate", {
+      const response = await fetch("https://quantize-2pq1.onrender.com/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ numbers: nums, ops, target })
